@@ -116,10 +116,3 @@ function tampilKeranjang() {
 }
 
 tampilMenu();
-
-keranjang.push({ id: 7, nama: "Ayam Meleparrr 1", harga: 20500, qty: 2 });
-keranjang.push({ id: 23, nama: "Es Teh", harga: 5500, qty: 1 });
-tampilKeranjang();
-keranjang = [];
-
-rl.close();
