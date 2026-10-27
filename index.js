@@ -115,4 +115,43 @@ function tampilKeranjang() {
   console.log(garis("="));
 }
 
-tampilMenu();
+async function halamanMenu() {
+  while (true) {
+    tampilMenu();
+    const inputId = await tanya("Pilih ID menu: ");
+    const pilih = Number(inputId);
+
+    if (pilih === 0) {
+      return;
+    }
+
+    const item = menu.find((m) => m.id === pilih);
+    if (!item) {
+      console.log("ID menu tidak ditemukan!");
+      continue;
+    }
+
+    const inputQty = await tanya(`Berapa banyak ${item.nama} yang ingin dibeli? `);
+    const qty = Number(inputQty);
+
+    if (!Number.isInteger(qty) || qty <= 0) {
+      console.log("Jumlah tidak valid!");
+      continue;
+    }
+
+    keranjang.push({ ...item, qty });
+    console.log(`\n✔ ${qty}x ${item.nama} masuk ke checkout.`);
+
+    const lagi = await tanyaYaTidak("Tambah pesanan lain?");
+    if (!lagi) {
+      return;
+    }
+  }
+}
+
+async function tes() {
+  await halamanMenu();
+  console.log(keranjang);
+  rl.close();
+}
+tes();
