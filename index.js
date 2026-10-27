@@ -34,3 +34,32 @@ const menu = [
 
 let keranjang = [];
 let history = [];
+
+async function tanya(pertanyaan) {
+  const jawaban = await rl.question(pertanyaan);
+  return jawaban.trim();
+}
+
+async function tanyaYaTidak(pertanyaan) {
+  while (true) {
+    const jawaban = await tanya(`${pertanyaan} (y/n): `);
+    const jawab = jawaban.toLowerCase();
+
+    if (jawab === "y") {
+      return true;
+    }
+    if (jawab === "n") {
+      return false;
+    }
+    console.log("Masukkan 'y' atau 'n'.");
+  }
+}
+
+async function tes() {
+  const nama = await tanya("Nama Anda: ");
+  console.log("Halo,", nama);
+  const lanjut = await tanyaYaTidak("Lanjut?");
+  console.log(lanjut);
+  rl.close();
+}
+tes();
