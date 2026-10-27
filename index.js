@@ -76,75 +76,77 @@ function totalKeranjang() {
 }
 
 function tampilMenu() {
-  judul("DAFTAR MENU");
-  console.log("ID".padEnd(6) + "Nama Menu".padEnd(32) + "Harga".padStart(18));
-  console.log(garis("-"));
+    judul("DAFTAR MENU");
+    console.log("ID".padEnd(6) + "Nama Menu".padEnd(32) + "Harga".padStart(18));
+    console.log(garis("-"));
 
-  for (const { id, nama, harga } of menu) {
-    console.log(
-      String(id).padEnd(6) + nama.padEnd(32) + rupiah(harga).padStart(18)
-    );
-  }
+    for (const { id, nama, harga } of menu) {
+        console.log(String(id).padEnd(6) + nama.padEnd(32) + rupiah(harga).padStart(18));
+    }
 
-  console.log(garis("-"));
-  console.log("0".padEnd(6) + "Kembali ke Halaman Utama");
-  console.log(garis("="));
+    console.log(garis("-"));
+    console.log("0".padEnd(6) + "Kembali ke Halaman Utama");
+    console.log(garis("="));
 }
 
 function tampilKeranjang() {
-  judul("CHECKOUT");
-  console.log(
-    "No".padEnd(5) +
-      "Menu".padEnd(25) +
-      "Qty".padStart(5) +
-      "Subtotal".padStart(21)
-  );
-  console.log(garis("-"));
+    judul("CHECKOUT");
+    console.log("No".padEnd(5) + "Menu".padEnd(25) + "Qty".padStart(5) + "Subtotal".padStart(21));
+    console.log(garis("-"));
 
-  keranjang.forEach(({ nama, harga, qty }, i) => {
-    console.log(
-      String(i + 1).padEnd(5) +
-        nama.padEnd(25) +
-        String(qty).padStart(5) +
-        rupiah(harga * qty).padStart(21)
-    );
-  });
+    keranjang.forEach(({ nama, harga, qty }, i) => {
+        console.log(
+            String(i + 1).padEnd(5) + nama.padEnd(25) + String(qty).padStart(5) + rupiah(harga * qty).padStart(21),
+        );
+    });
 
-  console.log(garis("-"));
-  console.log("TOTAL".padEnd(35) + rupiah(totalKeranjang()).padStart(21));
-  console.log(garis("="));
+    console.log(garis("-"));
+    console.log("TOTAL".padEnd(35) + rupiah(totalKeranjang()).padStart(21));
+    console.log(garis("="));
 }
 
 async function halamanMenu() {
-  while (true) {
-    tampilMenu();
-    const inputId = await tanya("Pilih ID menu: ");
-    const pilih = Number(inputId);
+    while (true) {
+        tampilMenu();
+        const inputId = await tanya("Pilih ID menu: ");
+        const pilih = Number(inputId);
 
-    if (pilih === 0) {
-      return;
+        if (pilih === 0) {
+            return;
+        }
+
+        const item = menu.find(m => m.id === pilih);
+        if (!item) {
+            console.log("ID menu tidak ditemukan!");
+            continue;
+        }
+
+        const inputQty = await tanya(`Berapa banyak ${item.nama} yang ingin dibeli? `);
+        const qty = Number(inputQty);
+
+        if (!Number.isInteger(qty) || qty <= 0) {
+            console.log("Jumlah tidak valid!");
+            continue;
+        }
+
+        const ada = keranjang.find(k => k.id === item.id);
+        if (ada) {
+            ada.qty += qty;
+        } else {
+            keranjang.push({ ...item, qty });
+        }
+        console.log(`\n✔ ${qty}x ${item.nama} masuk ke checkout.`);
+
+        const lagi = await tanyaYaTidak("Tambah pesanan lain?");
+        if (!lagi) {
+            return;
+        }
     }
-
-    const item = menu.find((m) => m.id === pilih);
-    if (!item) {
-      console.log("ID menu tidak ditemukan!");
-      continue;
-    }
-
-    const inputQty = await tanya(`Berapa banyak ${item.nama} yang ingin dibeli? `);
-    const qty = Number(inputQty);
-
-    if (!Number.isInteger(qty) || qty <= 0) {
-      console.log("Jumlah tidak valid!");
-      continue;
-    }
-
-    keranjang.push({ ...item, qty });
-    console.log(`\n✔ ${qty}x ${item.nama} masuk ke checkout.`);
-
-    const lagi = await tanyaYaTidak("Tambah pesanan lain?");
-    if (!lagi) {
-      return;
-    }
-  }
 }
+
+async function tes() {
+  await halamanMenu();
+  console.log(keranjang);
+  rl.close();
+}
+tes();
