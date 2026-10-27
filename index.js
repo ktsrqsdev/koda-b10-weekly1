@@ -54,12 +54,3 @@ async function tanyaYaTidak(pertanyaan) {
     console.log("Masukkan 'y' atau 'n'.");
   }
 }
-
-async function tes() {
-  const nama = await tanya("Nama Anda: ");
-  console.log("Halo,", nama);
-  const lanjut = await tanyaYaTidak("Lanjut?");
-  console.log(lanjut);
-  rl.close();
-}
-tes();
