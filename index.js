@@ -143,10 +143,3 @@ async function halamanMenu() {
         }
     }
 }
-
-async function tes() {
-  await halamanMenu();
-  console.log(keranjang);
-  rl.close();
-}
-tes();
