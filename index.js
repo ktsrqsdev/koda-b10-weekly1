@@ -75,3 +75,51 @@ function totalKeranjang() {
     return keranjang.reduce((sum, item) => sum + item.harga * item.qty, 0);
 }
 
+function tampilMenu() {
+  judul("DAFTAR MENU");
+  console.log("ID".padEnd(6) + "Nama Menu".padEnd(32) + "Harga".padStart(18));
+  console.log(garis("-"));
+
+  for (const { id, nama, harga } of menu) {
+    console.log(
+      String(id).padEnd(6) + nama.padEnd(32) + rupiah(harga).padStart(18)
+    );
+  }
+
+  console.log(garis("-"));
+  console.log("0".padEnd(6) + "Kembali ke Halaman Utama");
+  console.log(garis("="));
+}
+
+function tampilKeranjang() {
+  judul("CHECKOUT");
+  console.log(
+    "No".padEnd(5) +
+      "Menu".padEnd(25) +
+      "Qty".padStart(5) +
+      "Subtotal".padStart(21)
+  );
+  console.log(garis("-"));
+
+  keranjang.forEach(({ nama, harga, qty }, i) => {
+    console.log(
+      String(i + 1).padEnd(5) +
+        nama.padEnd(25) +
+        String(qty).padStart(5) +
+        rupiah(harga * qty).padStart(21)
+    );
+  });
+
+  console.log(garis("-"));
+  console.log("TOTAL".padEnd(35) + rupiah(totalKeranjang()).padStart(21));
+  console.log(garis("="));
+}
+
+tampilMenu();
+
+keranjang.push({ id: 7, nama: "Ayam Meleparrr 1", harga: 20500, qty: 2 });
+keranjang.push({ id: 23, nama: "Es Teh", harga: 5500, qty: 1 });
+tampilKeranjang();
+keranjang = [];
+
+rl.close();
