@@ -29,7 +29,7 @@ const menu = [
     {id: 21, nama:"Sambal Asam Manis (150 ml)", harga: 27000},
     {id: 22, nama:"Air Mineral", harga: 6000},
     {id: 23, nama:"Es Teh", harga: 5500},
-    {id: 23, nama:"Es Kosong", harga: 1500},
+    {id: 24, nama:"Es Kosong", harga: 1500},
 ];
 
 let keranjang = [];
