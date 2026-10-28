@@ -91,17 +91,17 @@ function tampilMenu() {
 
 function tampilKeranjang() {
     judul("CHECKOUT");
-    console.log("No".padEnd(5) + "Menu".padEnd(25) + "Qty".padStart(5) + "Subtotal".padStart(21));
+    console.log("No".padEnd(5) + "Menu".padEnd(32) + "Qty".padStart(5) + "Subtotal".padStart(14));
     console.log(garis("-"));
 
     keranjang.forEach(({ nama, harga, qty }, i) => {
         console.log(
-            String(i + 1).padEnd(5) + nama.padEnd(25) + String(qty).padStart(5) + rupiah(harga * qty).padStart(21),
+            String(i + 1).padEnd(5) + nama.padEnd(32) + String(qty).padStart(5) + rupiah(harga * qty).padStart(14),
         );
     });
 
     console.log(garis("-"));
-    console.log("TOTAL".padEnd(35) + rupiah(totalKeranjang()).padStart(21));
+    console.log("TOTAL".padEnd(42) + rupiah(totalKeranjang()).padStart(14));
     console.log(garis("="));
 }
 
@@ -219,3 +219,11 @@ async function halamanCheckout() {
         console.log("Pilihan tidak valid!");
     }
 }
+
+async function tes() {
+  await halamanMenu();
+  await halamanCheckout();
+  console.log(JSON.stringify(history, null, 2));
+  rl.close();
+}
+tes();
