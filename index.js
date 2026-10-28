@@ -219,11 +219,3 @@ async function halamanCheckout() {
         console.log("Pilihan tidak valid!");
     }
 }
-
-async function tes() {
-  await halamanMenu();
-  await halamanCheckout();
-  console.log(JSON.stringify(history, null, 2));
-  rl.close();
-}
-tes();
