@@ -171,6 +171,15 @@ async function prosesBayar() {
             console.log(`Kembalian Anda: ${rupiah(kembali)}`);
         }
 
+        history.push({
+            no: history.length + 1,
+            waktu: new Date().toLocaleString("id-ID"),
+            items: keranjang.map(k => ({ ...k })),
+            total,
+            bayar,
+            kembali,
+        });
+
         keranjang = [];
         return true;
     }
@@ -210,3 +219,11 @@ async function halamanCheckout() {
         console.log("Pilihan tidak valid!");
     }
 }
+
+async function tes() {
+    await halamanMenu();
+    await halamanCheckout();
+    console.log(JSON.stringify(history, null, 2));
+    rl.close();
+}
+tes();
