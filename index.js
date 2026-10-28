@@ -242,3 +242,36 @@ function halamanHistory() {
     console.log(garis("-") + "\n");
   }
 }
+
+async function main() {
+  try {
+    while (true) {
+      judul("AYAM MELEPAR");
+      console.log("1. Menu");
+      console.log("2. Checkout");
+      console.log("3. History");
+      console.log("4. Exit");
+      console.log(garis("="));
+
+      const pilih = await tanya("Pilih menu (1-4): ");
+
+      if (pilih === "1") {
+        await halamanMenu();
+      } else if (pilih === "2") {
+        await halamanCheckout();
+      } else if (pilih === "3") {
+        halamanHistory();
+        await tanya("Tekan Enter untuk kembali...");
+      } else if (pilih === "4") {
+        console.log("\nTerima kasih sudah berkunjung ke Ayam Melepar!");
+        return;
+      } else {
+        console.log("Pilihan tidak valid!");
+      }
+    }
+  } catch (error) {
+    console.log("Terjadi kesalahan:", error.message);
+  }
+}
+
+main();
