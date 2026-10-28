@@ -271,6 +271,8 @@ async function main() {
     }
   } catch (error) {
     console.log("Terjadi kesalahan:", error.message);
+  } finally {
+    rl.close();
   }
 }
 
