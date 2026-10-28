@@ -242,14 +242,3 @@ function halamanHistory() {
     console.log(garis("-") + "\n");
   }
 }
-
-async function tes() {
-  halamanHistory();
-  await halamanMenu();
-  await halamanCheckout();
-  await halamanMenu();
-  await halamanCheckout();
-  halamanHistory();
-  rl.close();
-}
-tes();
