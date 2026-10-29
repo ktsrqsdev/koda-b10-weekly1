@@ -1,9 +1,4 @@
-const readline = require("readline/promises");
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-});
 
 const menu = [
     { id: 1, nama: "Induk Meleparrr", harga: 50000 },
@@ -35,41 +30,8 @@ const menu = [
 let keranjang = [];
 let history = [];
 
-async function tanya(pertanyaan) {
-    const jawaban = await rl.question(pertanyaan);
-    return jawaban.trim();
-}
 
-async function tanyaYaTidak(pertanyaan) {
-    while (true) {
-        const jawaban = await tanya(`${pertanyaan} (y/n): `);
-        const jawab = jawaban.toLowerCase();
 
-        if (jawab === "y") {
-            return true;
-        }
-        if (jawab === "n") {
-            return false;
-        }
-        console.log("Masukkan 'y' atau 'n'.");
-    }
-}
-
-const LEBAR = 56;
-
-function garis(karakter) {
-    return karakter.repeat(LEBAR);
-}
-
-function rupiah(angka) {
-    return "Rp " + angka.toLocaleString("id-ID");
-}
-
-function judul(teks) {
-    console.log("\n" + garis("="));
-    console.log(teks.padStart(Math.floor((LEBAR + teks.length) / 2)));
-    console.log(garis("="));
-}
 
 function totalKeranjang() {
     return keranjang.reduce((sum, item) => sum + item.harga * item.qty, 0);
@@ -273,7 +235,7 @@ async function main() {
     } catch (error) {
         console.log("Terjadi kesalahan:", error.message);
     } finally {
-        rl.close();
+        
     }
 }
 
