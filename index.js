@@ -1,29 +1,19 @@
-function halamanHistory() {
-    judul("HISTORY PESANAN");
-
-    for (const { no, waktu, items, total, bayar, kembali } of history) {
-        console.log(`Pesanan ke-${no}`);
-        console.log(garis("-"));
-        console.log("Waktu".padEnd(12) + ": " + waktu);
-        console.log("Pesanan".padEnd(12) + ":");
-
-        items.forEach(({ qty, nama, harga }) => {
-            console.log("  " + `${qty}x ${nama}`.padEnd(34) + rupiah(harga * qty).padStart(18));
-        });
-
-        console.log("Total".padEnd(12) + ": " + rupiah(total));
-        console.log("Bayar".padEnd(12) + ": " + rupiah(bayar));
-        console.log("Kembalian".padEnd(12) + ": " + rupiah(kembali));
-        console.log(garis("-") + "\n");
-    }
-}
+const { tanya, tutupInput } = require("./lib/input");
+const { garis, judul } = require("./lib/format");
+const { bacaMenu, bacaHistory } = require("./lib/storage");
+const { state } = require("./src/state");
+const { halamanMenu } = require("./src/halamanMenu");
+const { halamanCheckout } = require("./src/halamanCheckout");
+const { halamanHistory } = require("./src/HalamanHistory");
 
 async function main() {
     try {
+        state.menu = bacaMenu();
+        state.history = bacaHistory();
         while (true) {
             let labelItem = "";
-            if (keranjang.length > 0) {
-                labelItem = ` (${keranjang.length} item)`;
+            if (state.keranjang.length > 0) {
+                labelItem = ` (${state.keranjang.length} item)`;
             }
             judul("AYAM MELEPAR");
             console.log("1. Menu");
@@ -51,7 +41,7 @@ async function main() {
     } catch (error) {
         console.log("Terjadi kesalahan:", error.message);
     } finally {
-        
+        tutupInput();
     }
 }
 

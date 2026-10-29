@@ -1,0 +1,17 @@
+[
+  {
+    "no": 1,
+    "waktu": "29/10/2026, 18.05.26",
+    "items": [
+      {
+        "id": 2,
+        "nama": "Induk Original",
+        "harga": 50000,
+        "qty": 6
+      }
+    ],
+    "total": 300000,
+    "bayar": 300000,
+    "kembali": 0
+  }
+]
