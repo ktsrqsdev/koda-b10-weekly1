@@ -40,6 +40,8 @@ async function prosesBayar() {
             kembali,
         });
 
+        simpanHistory(state.history);
+
         state.keranjang = [];
         return true;
     }
@@ -80,4 +82,4 @@ async function halamanCheckout() {
     }
 }
 
-module.exports = { halamanCheckout }
+module.exports = { halamanCheckout };

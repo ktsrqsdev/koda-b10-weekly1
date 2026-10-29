@@ -1,7 +1,3 @@
-
-
-
-
 function halamanHistory() {
     judul("HISTORY PESANAN");
 
