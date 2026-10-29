@@ -1,0 +1,30 @@
+{
+  "name": "ayam-melepar",
+  "version": "1.0.0",
+  "description": "Aplikasi kasir CLI Ayam Melepar",
+  "keywords": [
+    "CLI",
+    "CashierAPP",
+    "AyamMelepar"
+  ],
+  "homepage": "https://github.com/ktsrqsdev/koda-b10-weekly1#readme",
+  "bugs": {
+    "url": "https://github.com/ktsrqsdev/koda-b10-weekly1/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ktsrqsdev/koda-b10-weekly1.git"
+  },
+  "license": "MIT",
+  "author": "KDev",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.13.0",
+    "globals": "^17.13.0"
+  }
+}
