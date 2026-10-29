@@ -2,15 +2,7 @@
 
 
 
-let keranjang = [];
-let history = [];
 
-
-
-
-function totalKeranjang() {
-    return keranjang.reduce((sum, item) => sum + item.harga * item.qty, 0);
-}
 
 function tampilMenu() {
     judul("DAFTAR MENU");
